@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerceSample.Core.Models;
+
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using System;
@@ -13,19 +15,35 @@ namespace ECommerceSample.Controllers
     public class ProductsController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<Product> GetProducts()
         {
             throw new NotImplementedException();
         }
 
         [HttpGet]
-        public WeatherForecast Get(int id)
+        [Route("{id}")]
+        public Product GetProduct(int id)
         {
             throw new NotImplementedException();
         }
 
-        [HttpPost]
-        public bool Buy(int id)
+        [HttpGet]
+        [Route("categories")]
+        public IEnumerable<ProductCategory> GetCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [Route("categories/{id}")]
+        public ProductCategory GetCategory(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpGet]
+        [Route("categories/{id}/products")]
+        public Product GetCategoryProducts(int id)
         {
             throw new NotImplementedException();
         }
