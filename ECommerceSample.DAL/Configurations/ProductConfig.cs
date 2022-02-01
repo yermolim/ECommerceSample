@@ -2,6 +2,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace ECommerceSample.DAL.Configurations
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.ToTable("Products");
+
+            builder.Property(product => product.Id)
+                .HasConversion(new GuidToStringConverter());
 
             builder.HasKey(product => product.Id);
 
