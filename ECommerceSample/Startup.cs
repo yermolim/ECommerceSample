@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using System.Reflection;
+
 namespace ECommerceSample
 {
     public class Startup
@@ -31,6 +33,26 @@ namespace ECommerceSample
 
             // Register DAL
             services.AddECommerceContext(Configuration.GetConnectionString("default"));
+
+            // Add all repositories to the services (using reflection)
+            var dalAssembly = Assembly.Load("ECommerceSample.DAL");
+            foreach (var type in dalAssembly.GetTypes())
+            {
+                if (type.Name.EndsWith("Repository"))
+                {
+                    var typeInterface = type.GetInterface($"I{type.Name}");
+                    if (typeInterface != null)
+                    {
+                        services.AddTransient(typeInterface, type);
+                    }
+                }
+            }
+
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,29 +60,28 @@ namespace ECommerceSample
         {
             app.UseMiddleware<ExceptionHandler>();
 
-            app.UseStaticFiles();
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
+            //app.UseStaticFiles();
+            //if (!env.IsDevelopment())
+            //{
+            //    app.UseSpaStaticFiles();
+            //}
 
             app.UseRouting();
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(
-            //        name: "default",
-            //        pattern: "{controller}/{action=Index}/{id?}");
-            //});
-
-            app.UseSpa(spa =>
+            app.UseEndpoints(endpoints =>
             {
-                spa.Options.SourcePath = "ClientApp";
-                if (env.IsDevelopment())
-                {
-                    spa.UseAngularCliServer(npmScript: "start");
-                }
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
+
+            //app.UseSpa(spa =>
+            //{
+            //    spa.Options.SourcePath = "ClientApp";
+            //    if (env.IsDevelopment())
+            //    {
+            //        spa.UseAngularCliServer(npmScript: "start");
+            //    }
+            //});
         }
     }
 }

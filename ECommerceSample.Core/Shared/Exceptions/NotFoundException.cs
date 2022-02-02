@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ECommerceSample.Core.Exceptions
+namespace ECommerceSample.Core.Shared.Exceptions
 {
     public class NotFoundException : Exception
     {

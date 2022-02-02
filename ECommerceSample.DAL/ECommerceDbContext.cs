@@ -1,4 +1,4 @@
-﻿using ECommerceSample.Core.Models;
+﻿using ECommerceSample.Core.Models.Products;
 
 using Microsoft.EntityFrameworkCore;
 

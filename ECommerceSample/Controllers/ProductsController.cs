@@ -1,11 +1,8 @@
-﻿using ECommerceSample.Core.Models;
+﻿using ECommerceSample.Core.Models.Products;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ECommerceSample.Controllers
@@ -14,38 +11,71 @@ namespace ECommerceSample.Controllers
     [Route("[controller]")]
     public class ProductsController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<Product> GetProducts()
+        private readonly IProductRepository _productRepository;
+
+        public ProductsController(IProductRepository productRepository)
         {
-            throw new NotImplementedException();
+            _productRepository = productRepository 
+                ?? throw new ArgumentNullException(nameof(productRepository));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProductsAsync()
+        {
+            var products = await _productRepository.GetProductsAsync();
+            if (products == null || products.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(products);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Product GetProduct(int id)
+        public async Task<IActionResult> GetProductAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetProductAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return Ok(product);
         }
 
         [HttpGet]
         [Route("categories")]
-        public IEnumerable<ProductCategory> GetCategories()
+        public async Task<IActionResult> GetCategoriesAsync()
         {
-            throw new NotImplementedException();
+            var categories = await _productRepository.GetCategoriesAsync();
+            if (categories == null || categories.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(categories);
         }
 
         [HttpGet]
         [Route("categories/{id}")]
-        public ProductCategory GetCategory(int id)
+        public async Task<IActionResult> GetCategoryAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var category = await _productRepository.GetProductAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return Ok(category);
         }
 
         [HttpGet]
         [Route("categories/{id}/products")]
-        public Product GetCategoryProducts(int id)
+        public async Task<IActionResult> GetCategoryProductsAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var products = await _productRepository.GetCategoryProductsAsync(id);
+            if (products == null || products.Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(products);
         }
     }
 }

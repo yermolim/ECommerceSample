@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ECommerceSample.Core.Models
+namespace ECommerceSample.Core.Models.Products
 {
     public class ProductCategory
     {

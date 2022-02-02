@@ -1,19 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ECommerceSample.DAL
 {
     /// <summary>
-    /// Design-time factory for ECommerceDbContext
+    /// Design-time factory for ECommerceDbContext to apply migrations
     /// </summary>
     public class ECommerceDbContextFactory : IDesignTimeDbContextFactory<ECommerceDbContext>
     {
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="args">connection string</param>
+        /// <returns></returns>
         public ECommerceDbContext CreateDbContext(string[] args)
         {
             var connectionString = args == null || args.Length == 0

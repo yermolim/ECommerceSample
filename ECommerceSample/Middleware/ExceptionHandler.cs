@@ -2,7 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 
-using ECommerceSample.Core.Exceptions;
+using ECommerceSample.Core.Shared.Exceptions;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

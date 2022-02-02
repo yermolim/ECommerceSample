@@ -1,14 +1,8 @@
-﻿using ECommerceSample.Core.Models;
+﻿using ECommerceSample.Core.Models.Products;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ECommerceSample.DAL.Configurations
 {

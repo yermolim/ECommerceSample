@@ -15,10 +15,10 @@ namespace ECommerceSample.Controllers
     public class OrdersController : ControllerBase
     {
         [HttpPost]
-        public bool PostOrder()
+        public IActionResult PostOrder()
         {
             // TODO: implement
-            return true;
+            return Ok(true);
         }
     }
 }
