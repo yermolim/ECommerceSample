@@ -1,6 +1,6 @@
 # ECommerceSample
-A basic sample e-shop project was created during the implementation of a test task.
-Uses ASP.NET Core 5 + EFCore + MS SQL Server for the backend and Angular 13 for the frontend.
+A basic sample e-shop project created during the implementation of a test task.
+It uses ASP.NET Core 5 + EFCore + MS SQL Server for the backend and Angular 13 for the frontend.
 
 To run the sample in the development mode: 
 
