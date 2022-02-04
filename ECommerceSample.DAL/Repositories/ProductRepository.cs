@@ -53,5 +53,12 @@ namespace ECommerceSample.DAL.Repositories
             return await _dbContext.Products
                 .ToListAsync();
         }
+
+        public async Task<bool> CheckProductAvailabilityAsync(Guid id, int count)
+        {
+            return await _dbContext.Products
+                .Where(p => p.Id == id && p.NumberOfItemsInStock >= count)
+                .AnyAsync();
+        }
     }
 }

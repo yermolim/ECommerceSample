@@ -1,0 +1,7 @@
+<div class="tile is-ancestor is-flex-wrap-wrap is-marginless">
+  <div class="tile" *ngFor="let product of eShopService.selectedCategory?.products">
+    <app-product-list-item
+      [product]="product">
+    </app-product-list-item>
+  </div>
+</div>

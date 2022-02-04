@@ -1,0 +1,41 @@
+<div class="m-5 is-flex is-flex-direction-column product-list-item">
+
+  <div class="is-flex is-flex-direction-column is-align-items-center is-flex-grow-1 is-flex-shrink-1">
+    <figure class="image is-256x256">
+      <img src="https://via.placeholder.com/256">
+    </figure>
+  </div>
+
+  <div class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center m-3">
+    <p>{{product?.name}}</p>
+    <p>{{product?.price}}$</p>
+  </div>
+
+  <ng-container *ngIf="addToCartForm">  
+    <form [formGroup]="addToCartForm"
+      (ngSubmit)="onSubmit()">
+      <div class="is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center m-2">
+        <div class="is-flex is-flex-direction-row is-align-items-center">
+          <label for="amount"
+            class="label">
+            Amount:
+          </label>
+          <input id="amount" 
+            type="number" 
+            class="input ml-2 mr-2"
+            [formControl]="amount">
+        </div>
+        <button class="button is-primary"
+          type="submit"
+          [disabled]="!addToCartForm.valid">
+          Buy
+        </button>
+      </div>
+    </form>
+
+    <p class="help is-danger is-size-6 h-10">
+      <span *ngIf="!addToCartForm.valid">This product in selected amount is currently not in <b><i>stock</i></b></span>
+    </p>
+  </ng-container>
+
+</div>

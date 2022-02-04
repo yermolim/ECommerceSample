@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ECommerceSample.Core.Models.Products
@@ -17,5 +15,7 @@ namespace ECommerceSample.Core.Models.Products
         Task<ProductCategory> GetCategoryAsync(Guid id);
 
         Task<IList<Product>> GetCategoryProductsAsync(Guid id);
+
+        Task<bool> CheckProductAvailabilityAsync(Guid id, int count);
     }
 }

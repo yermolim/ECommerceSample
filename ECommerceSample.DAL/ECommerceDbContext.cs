@@ -16,7 +16,7 @@ namespace ECommerceSample.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Apply all configuration defined in the current assembly
+            // apply all configurations defined in the current assembly
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ECommerceDbContext).Assembly);
         }
     }

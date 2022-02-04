@@ -1,0 +1,46 @@
+<div class="is-flex is-flex-direction-column is-flex-grow-1 is-fheight">
+
+  <nav class="navbar has-text-link-light has-background-dark">
+    <div class="navbar-start">
+      <p class="navbar-item">
+        <strong class="has-text-light">{{title}}</strong>
+      </p>
+    </div>
+  </nav>
+  
+  <div class="is-flex is-flex-direction-column is-justify-content-space-between is-flex-grow-1">
+    <div class="is-flex is-flex-direction-column m-3">
+      <div *ngFor="let item of eShopService.cartContent.items"
+        class="is-flex is-flex-direction-row is-justify-content-space-between">
+        <p>
+          {{item.product.name}}
+        </p>
+        <p class="ml-5">
+          {{item.amount}} X ${{item.product.price}} = ${{item.product.price * item.amount}}
+        </p>
+      </div>
+    </div>
+    <div class="is-flex is-flex-direction-column is-fwidth">
+      <p *ngIf="inStock == false" 
+        class="help is-danger ml-3 mr-3 is-size-6">
+        Some of the products from the basket are currently out of stock
+      </p>
+      <p class="ml-3 mr-3 is-size-5">
+        Total: ${{eShopService.cartContent.totalPrice}}
+      </p>
+      <p *ngIf="orderSuccess" 
+        class="help is-success ml-3 mr-3 is-size-6">
+        The order was successfully made!
+      </p>
+      <p *ngIf="orderError" 
+        class="help is-danger ml-3 mr-3 is-size-6">
+        Error while making the order!
+      </p>
+      <button class="button is-primary m-3"
+        [disabled]="!inStock"
+        (click)="confirmOrderAsync()">
+        Confirm and pay
+      </button>
+    </div>
+  </div>
+</div>

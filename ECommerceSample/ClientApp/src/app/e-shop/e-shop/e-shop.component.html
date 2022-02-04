@@ -1,0 +1,24 @@
+
+<nav class="navbar"></nav>
+<app-header></app-header>
+
+
+<section class="columns is-marginless is-flex-grow-1 is-relative">
+  <app-categories class="column is-one-quarter is-paddingless"></app-categories>
+  <div class="column is-paddingless">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
+</section>
+
+<ng-container *ngIf="eShopService.isCartShown">
+  <div class="is-mobile is-fixed is-fullsize modal-background">
+    <div class="is-flex is-flex-direction-column is-fullsize is-flex-grow-1">
+      <div class="mh-60"></div>
+      <section class="columns is-marginless is-flex-grow-1 is-relative">
+        <div class="column is-paddingless"
+          (click)="hideCart()"></div>
+        <app-cart class="column is-one-quarter is-paddingless has-background-white is-fheight"></app-cart>
+      </section>
+    </div>
+  </div>
+</ng-container>

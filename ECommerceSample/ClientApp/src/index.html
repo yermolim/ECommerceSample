@@ -8,6 +8,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  <!-- hack to fit page in mobile browsers with hidden address bar -->
+  <script type="module">
+      const mobileVhHack = () => {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+      };
+      mobileVhHack();
+      window.addEventListener("resize", mobileVhHack);
+  </script>
   <app-root></app-root>
 </body>
 </html>

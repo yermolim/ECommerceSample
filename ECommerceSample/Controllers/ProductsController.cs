@@ -77,5 +77,13 @@ namespace ECommerceSample.Controllers
             }
             return Ok(products);
         }
+
+        [HttpGet]
+        [Route("{id}/instock")]
+        public async Task<IActionResult> CheckProductAvailabilityAsync(Guid id, int count)
+        {
+            var result = await _productRepository.CheckProductAvailabilityAsync(id, count);
+            return Ok(result);
+        }
     }
 }

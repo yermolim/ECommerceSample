@@ -1,0 +1,10 @@
+<aside class="menu">
+  <ul class="menu-list">
+    <li *ngFor="let category of eShopService.categories">
+      <a [ngClass]="{'is-active': category == eShopService.selectedCategory}"
+        (click)="eShopService.selectedCategory = category">
+        {{category.name}}
+      </a>
+    </li>
+  </ul>
+</aside>

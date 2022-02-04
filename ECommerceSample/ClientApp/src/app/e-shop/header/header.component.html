@@ -1,0 +1,18 @@
+<nav class="navbar is-fixed-top has-background-light">
+  <div class="navbar-start">
+    <p class="navbar-item">
+      <strong>{{title}}</strong>
+    </p>
+  </div>
+
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <a class="button is-primary"
+          (click)="toggleCart()">
+          Shopping bag <span *ngIf="eShopService.cartContent.length">: {{eShopService.cartContent.length}} item(s)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
